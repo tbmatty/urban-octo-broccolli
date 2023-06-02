@@ -19,9 +19,9 @@ public:
     void setWidth(float width);
     void setHeight(float height);
 
-    void updateViewport(Vector2 position);
+    void updateViewport(Vector2 direction, float speed);
     void centerOn(Vector2 position);
-
+    void move(float x, float y);
 
 private:
     float x;

@@ -16,6 +16,7 @@ public:
     virtual ~Map() = default;
 
     // void Draw(SDL_Renderer *renderer, std::shared_ptr<Viewport> viewport);
+    void FitToScreen(std::shared_ptr<Viewport> viewport);
     void Draw(SDL_Renderer *renderer, std::shared_ptr<Viewport> viewport);
 private:
     Tile GetTile(int x, int y);

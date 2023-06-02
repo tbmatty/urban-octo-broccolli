@@ -34,7 +34,6 @@ GameManager::GameManager()
     currentState = GameState::MainMenu;
 }
 
-
 GameManager::~GameManager()
 {
     // Clean up resources
@@ -70,8 +69,10 @@ int GameManager::loadGameObjectsForState(GameState state)
     {
         std::cout << "Loading map for playing state" << std::endl;
         grid = std::make_shared<Grid>(currentWidth, currentHeight, 0);
-        map = std::make_unique<Map>(grid, "C:/Users/theba/Documents/2dgameengine/test.csv");
+        map = std::make_unique<Map>(grid, "C:/Users/theba/Documents/2dgameengine/map2.csv");
         // Load game objects for the playing state
+
+        
         std::cout << "Loading objects for playing state" << std::endl;
         playerObject = std::make_shared<PlayerGameObject>(Vector2(100, 100), Vector2(64, 64), false);
         if (!playerObject->loadTexture("C:/Users/theba/Documents/2dgameengine/cowboy1.png", renderer))
@@ -332,7 +333,7 @@ void GameManager::handlePlayingEvent(const SDL_Event &event)
             playerObject->transformPosition(1000.0f, Vector2(0,-1), deltaTime);
             std::cout << "Handle Viewport transform" << std::endl;
             // Viewport.transformPosition(1000.0f, Vector2(0,-1), deltaTime);
-            // viewport->updateViewport(playerObject->getPosition());
+            viewport->updateViewport(Vector2(0,-1), 50.0f);
             std::cout << "Position transformed" << std::endl;
             break;
         }
@@ -340,21 +341,21 @@ void GameManager::handlePlayingEvent(const SDL_Event &event)
         {
             // handle a press
             playerObject->transformPosition(1000.0f, Vector2(-1,0), deltaTime);
-            // viewport->updateViewport(playerObject->getPosition());
+            viewport->updateViewport(Vector2(-1,0), 50.0f);
             break;
         }
         case SDLK_d:
         {
             // handle d press
             playerObject->transformPosition(1000.0f, Vector2(1,0), deltaTime);
-            // viewport->updateViewport(playerObject->getPosition());
+            viewport->updateViewport(Vector2(1,0), 50.0f);
             break;
         }
         case SDLK_s:
         {
             // handle s press
             playerObject->transformPosition(1000.0f, Vector2(0,1), deltaTime);
-            // viewport->updateViewport(playerObject->getPosition());
+            viewport->updateViewport(Vector2(0,1), 50.0f);
             break;
         }
         break;

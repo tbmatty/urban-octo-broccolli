@@ -1,6 +1,6 @@
 #include "tile.hpp"
 
-Tile::Tile(int x, int y, int width, int height, int tileType)
+Tile::Tile(int x, int y, int width, int height, int tileType, int screenX, int screenY)
     : x(x), y(y), width(width), height(height), tileType(tileType), texture(nullptr){};
 
 
@@ -32,7 +32,7 @@ bool Tile::loadTexture(const std::string& imagePath, SDL_Renderer* renderer)
 void Tile::render(SDL_Renderer* renderer)
 {
     if(texture != nullptr) {
-        SDL_Rect dstRect = {x, y, width, height};
+        SDL_Rect dstRect = {screenX, screenY, width, height};
         SDL_RenderCopy(renderer, texture, nullptr, &dstRect);
     }
 }
@@ -46,4 +46,39 @@ void Tile::setPosition(int x, int y)
 {
     this->x = x;
     this->y = y;
+}
+
+int Tile::getX() const
+{
+    return x;
+}
+
+int Tile::getY() const
+{
+    return y;
+}
+
+void Tile::setScreenX(int screenX)
+{
+    this->screenX = screenX;
+}
+
+void Tile::setScreenY(int screenY)
+{
+    this->screenY = screenY;
+}
+
+int Tile::getScreenX() const
+{
+    return screenX;
+}
+
+int Tile::getScreenY() const
+{
+    return screenY;
+}
+
+int Tile::getType() const
+{
+    return tileType;
 }
